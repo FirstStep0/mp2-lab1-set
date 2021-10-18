@@ -104,12 +104,23 @@ TSet TSet::operator~(void) // дополнение
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
-    istr >> s.BitField;
+    TSet temp(s.GetMaxPower());
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        temp.InsElem(x);
+    }
+    s = temp;
     return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
-    ostr << s.BitField;
+    int size = s.GetMaxPower();
+    for (int i = 0; i < size; i++) {
+        if (s.IsMember(i))cout << i << " ";
+    }
     return ostr;
 }
